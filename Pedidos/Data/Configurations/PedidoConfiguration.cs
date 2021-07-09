@@ -12,7 +12,7 @@ namespace Pedidos.Data.Configurations
 			builder.Property(p => p.IniciadoEm).HasDefaultValueSql("getdate()").ValueGeneratedOnAdd();
 			builder.Property(p => p.Status).HasConversion<string>();
 			builder.Property(p => p.TipoFrete).HasConversion<int>();
-			builder.Property(p => p.Obersavao).HasColumnType("varchar(512");
+			builder.Property(p => p.Obersavao).HasColumnType("varchar(512)");
 			builder.HasMany(p => p.Itens).WithOne(p => p.Pedido).OnDelete(DeleteBehavior.Cascade);
         }
     }

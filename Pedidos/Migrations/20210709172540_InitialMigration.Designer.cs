@@ -75,7 +75,7 @@ namespace Pedidos.Migrations
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Obersavao")
-                        .HasColumnType("varchar(512");
+                        .HasColumnType("varchar(512)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -139,7 +139,7 @@ namespace Pedidos.Migrations
                         .HasColumnType("varchar(14)");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("varchar(60");
+                        .HasColumnType("varchar(60)");
 
                     b.Property<string>("TipoProduto")
                         .IsRequired()

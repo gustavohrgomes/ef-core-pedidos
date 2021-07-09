@@ -31,7 +31,7 @@ namespace Pedidos.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CodigoBarras = table.Column<string>(type: "varchar(14)", nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(60", nullable: true),
+                    Descricao = table.Column<string>(type: "varchar(60)", nullable: true),
                     Valor = table.Column<decimal>(nullable: false),
                     TipoProduto = table.Column<string>(nullable: false),
                     Ativo = table.Column<bool>(nullable: false)
@@ -52,7 +52,7 @@ namespace Pedidos.Migrations
                     FinalizadoEm = table.Column<DateTime>(nullable: false),
                     TipoFrete = table.Column<int>(nullable: false),
                     Status = table.Column<string>(nullable: false),
-                    Obersavao = table.Column<string>(type: "varchar(512", nullable: true)
+                    Obersavao = table.Column<string>(type: "varchar(512)", nullable: true)
                 },
                 constraints: table =>
                 {
