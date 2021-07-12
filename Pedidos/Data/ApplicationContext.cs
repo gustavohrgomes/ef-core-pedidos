@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -19,7 +20,11 @@ namespace Pedidos.Data
             optionsBuilder
                 .UseLoggerFactory(_logger)
                 .EnableSensitiveDataLogging()
-                .UseSqlServer("Server=localhost,1433;Database=Pedidos;User ID=sa;Password=1q2w3e4r!@#$");
+                .UseSqlServer("Server=localhost,1433;Database=Pedidos;User ID=sa;Password=1q2w3e4r!@#$",
+                p => p.EnableRetryOnFailure(
+                    maxRetryCount: 2, 
+                    maxRetryDelay: TimeSpan.FromSeconds(5), 
+                    errorNumbersToAdd: null));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
