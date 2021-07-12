@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Pedidos.Domain;
@@ -24,6 +25,25 @@ namespace Pedidos.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
+            MapearPropriedadesNãoConfiguradas(builder);
+        }
+
+        private void MapearPropriedadesNãoConfiguradas(ModelBuilder builder) 
+        {
+            foreach (var entity in builder.Model.GetEntityTypes())
+            {
+                var properties = entity.GetProperties().Where(p => p.ClrType == typeof(string));
+
+                foreach (var property in properties)
+                {
+                    if (string.IsNullOrEmpty(property.GetColumnType()) 
+                        && !property.GetMaxLength().HasValue)
+                    {
+                        //property.SetMaxLength(100);
+                        property.SetColumnType("varchar(100)");
+                    }
+                }
+            }
         }
     }
 }
